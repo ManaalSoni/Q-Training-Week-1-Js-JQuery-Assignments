@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <title>JQuery Assignment</title>
+   <style>
+          /* CSS GOES HERE */
+        div.post {
+            width: 90%;
+            height: 150px;
+            margin: 30px;
+            color: rgb(61, 61, 61);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            text-align: center;
+            display: none;
+            background: #22a5aa77
+        }
+
+        div.post:hover {
+            border: 2px solid rgb(255, 255, 255);
+            background: rgba(160, 158, 158, 0.87);
+            border-radius: 20px;
+
+        }
+   </style>
+</head>
+ 
+<body>
+    <div id='view1'>
+        <div class="comments" style="border: 1px solid green;padding:1rem;margin-bottom: 0.5rem;">
+        
+        </div>
+        <button id="load">Load Data</button>
+    </div>
+   
+
+   <div class="posts", id="posts">
+
+   </div>
+
+   <script>     //JQ LOGIC GOES HERE
+    $("#load").on("click", function () {
+                $("#view1").hide();
+                $.ajax({url:'https://jsonplaceholder.typicode.com/posts',success:function (data) {  // success callback
+                    var postId = $("#posts");
+                    var counter = 1;
+                    for (var comment in data){
+                        var id = "post" + counter;
+                        var markup =
+                            `<div class="post" id="${id}"><h2>Title:<br> ${data[comment]['title']}</h2><p>Body: <br>${data[comment]['body']}</p></div>`;
+                        $(postId).append(markup);
+                        $("#" + id).show(300 * counter);
+                        counter++;                   
+                    }
+                }});
+});
+   </script>
+</body>
+</html> 
