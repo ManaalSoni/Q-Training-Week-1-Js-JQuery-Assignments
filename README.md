@@ -1,3 +1,3 @@
-# Q Training Week 1
-JavascriptOutput.js
+# Q Training Week 1: Js Jquery
+JavascriptOutput.js, 
 Jquery.html
